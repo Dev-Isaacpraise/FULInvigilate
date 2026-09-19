@@ -1,0 +1,6 @@
+{
+  "name": "FUL Invigilator Allocation System",
+  "description": "Automated Examination Invigilator Allocation and Roster Management System for Federal University Lokoja (FUL).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

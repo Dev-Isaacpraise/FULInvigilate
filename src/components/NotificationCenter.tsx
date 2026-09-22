@@ -47,8 +47,8 @@ export const NotificationCenter: React.FC<NotificationCenterProps> = ({
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 bg-white p-4 rounded-xl border border-slate-200 shadow-2xs">
         <div>
-          <h2 className="text-base font-bold text-emerald-950 flex items-center gap-2">
-            <Bell className="w-5 h-5 text-amber-500" />
+          <h2 className="text-base font-bold text-slate-900 flex items-center gap-2">
+            <Bell className="w-5 h-5 text-slate-500" />
             <span>Invigilator Duty Call Slips & Notification Center</span>
           </h2>
           <p className="text-xs text-slate-500">
@@ -57,7 +57,7 @@ export const NotificationCenter: React.FC<NotificationCenterProps> = ({
         </div>
         <button
           onClick={onOpenDispatchModal}
-          className="flex items-center gap-1.5 px-3.5 py-2 bg-emerald-800 text-white text-xs font-bold rounded-lg hover:bg-emerald-900 transition-colors shadow-2xs"
+          className="flex items-center gap-1.5 px-3.5 py-2 bg-[#0d4b8f] text-white text-xs font-bold rounded-lg hover:bg-[#0b3f7a] transition-colors shadow-2xs"
         >
           <Send className="w-4 h-4" />
           <span>Dispatch Duty Slips</span>
@@ -73,7 +73,7 @@ export const NotificationCenter: React.FC<NotificationCenterProps> = ({
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search staff, course, venue..."
-            className="w-full pl-8 pr-3 py-1.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-600 focus:outline-none"
+            className="w-full pl-8 pr-3 py-1.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#0d4b8f] focus:outline-none"
           />
         </div>
 
@@ -106,11 +106,11 @@ export const NotificationCenter: React.FC<NotificationCenterProps> = ({
           {filtered.map((n) => (
             <div
               key={n.id}
-              className="bg-white border border-slate-200 rounded-xl p-4 shadow-2xs hover:border-emerald-300 transition-all space-y-2.5"
+              className="bg-white border border-slate-200 rounded-xl p-4 shadow-2xs hover:border-blue-300 transition-all space-y-2.5"
             >
               <div className="flex justify-between items-start">
                 <div className="flex items-center gap-2">
-                  <div className="p-1.5 bg-emerald-50 text-emerald-800 rounded-lg border border-emerald-200">
+                  <div className="p-1.5 bg-blue-50 text-[#0d4b8f] rounded-lg border border-blue-200">
                     {n.channel === 'email' ? (
                       <Mail className="w-4 h-4" />
                     ) : n.channel === 'sms' ? (
@@ -140,7 +140,7 @@ export const NotificationCenter: React.FC<NotificationCenterProps> = ({
                 <span>
                   Delivered to: {n.channel === 'email' ? n.staff_email : n.staff_phone}
                 </span>
-                <span className="text-emerald-700 font-semibold flex items-center gap-1">
+                <span className="text-[#0d4b8f] font-semibold flex items-center gap-1">
                   <CheckCircle2 className="w-3 h-3" />
                   Verified Delivery
                 </span>

@@ -113,7 +113,7 @@ export const RosterTable: React.FC<RosterTableProps> = ({
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search staff, course code, venue..."
-              className="w-full pl-9 pr-3 py-2 text-xs border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-600 focus:outline-none bg-slate-50/50"
+              className="w-full pl-9 pr-3 py-2 text-xs border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#0d4b8f] focus:outline-none bg-slate-50/50"
             />
           </div>
 
@@ -161,7 +161,7 @@ export const RosterTable: React.FC<RosterTableProps> = ({
             {selectedIds.size > 0 ? (
               <button
                 onClick={() => onBulkApprove(Array.from(selectedIds))}
-                className="flex items-center gap-1.5 px-3 py-2 bg-emerald-800 text-white text-xs font-bold rounded-lg hover:bg-emerald-900 transition-colors shadow-2xs"
+                className="flex items-center gap-1.5 px-3 py-2 bg-[#0d4b8f] text-white text-xs font-bold rounded-lg hover:bg-[#0b3f7a] transition-colors shadow-2xs"
               >
                 <CheckCheck className="w-4 h-4" />
                 <span>Approve Selected ({selectedIds.size})</span>
@@ -169,7 +169,7 @@ export const RosterTable: React.FC<RosterTableProps> = ({
             ) : suggestedCount > 0 ? (
               <button
                 onClick={() => onBulkApprove()}
-                className="flex items-center gap-1.5 px-3 py-2 bg-emerald-700 text-white text-xs font-bold rounded-lg hover:bg-emerald-800 transition-colors shadow-2xs"
+                className="flex items-center gap-1.5 px-3 py-2 bg-[#0d4b8f] text-white text-xs font-bold rounded-lg hover:bg-[#0d4b8f] transition-colors shadow-2xs"
               >
                 <CheckCheck className="w-4 h-4 text-amber-300" />
                 <span>Approve All Suggested ({suggestedCount})</span>
@@ -186,11 +186,11 @@ export const RosterTable: React.FC<RosterTableProps> = ({
           </div>
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1">
-              <span className="w-2 h-2 rounded-full bg-amber-500 inline-block"></span>
+              <span className="w-2 h-2 rounded-full bg-slate-500 inline-block"></span>
               Suggested: {safeAllocations.filter((a) => a.status === 'suggested').length}
             </span>
             <span className="flex items-center gap-1">
-              <span className="w-2 h-2 rounded-full bg-emerald-600 inline-block"></span>
+              <span className="w-2 h-2 rounded-full bg-[#0d4b8f] inline-block"></span>
               Approved: {safeAllocations.filter((a) => a.status === 'approved').length}
             </span>
             <span className="flex items-center gap-1">
@@ -215,7 +215,7 @@ export const RosterTable: React.FC<RosterTableProps> = ({
                       selectedIds.size === filteredAllocations.length
                     }
                     onChange={handleSelectAll}
-                    className="rounded border-slate-300 text-emerald-600 focus:ring-emerald-500"
+                    className="rounded border-slate-300 text-[#0d4b8f] focus:ring-[#0d4b8f]"
                   />
                 </th>
                 <th className="p-3 font-bold">Exam Date & Time</th>
@@ -243,7 +243,7 @@ export const RosterTable: React.FC<RosterTableProps> = ({
                     <tr
                       key={alloc.id}
                       className={`hover:bg-slate-50/80 transition-colors ${
-                        isSelected ? 'bg-emerald-50/40' : ''
+                        isSelected ? 'bg-blue-50/40' : ''
                       }`}
                     >
                       {/* Checkbox */}
@@ -252,7 +252,7 @@ export const RosterTable: React.FC<RosterTableProps> = ({
                           type="checkbox"
                           checked={isSelected}
                           onChange={() => handleToggleSelect(alloc.id)}
-                          className="rounded border-slate-300 text-emerald-600 focus:ring-emerald-500"
+                          className="rounded border-slate-300 text-[#0d4b8f] focus:ring-[#0d4b8f]"
                         />
                       </td>
 
@@ -268,13 +268,13 @@ export const RosterTable: React.FC<RosterTableProps> = ({
 
                       {/* Course */}
                       <td className="p-3">
-                        <div className="font-bold text-emerald-950">
+                        <div className="font-bold text-slate-900">
                           {alloc.course?.code}
                         </div>
                         <div className="text-[11px] text-slate-500 max-w-[160px] truncate">
                           {alloc.course?.title}
                         </div>
-                        <div className="text-[10px] text-amber-700 bg-amber-50/80 px-1.5 py-0.5 rounded inline-block mt-0.5 border border-amber-200/50">
+                        <div className="text-[10px] text-slate-600 bg-slate-50/80 px-1.5 py-0.5 rounded inline-block mt-0.5 border border-slate-200/50">
                           Lecturer: {alloc.lecturer?.name || 'Unassigned'}
                         </div>
                       </td>
@@ -325,12 +325,12 @@ export const RosterTable: React.FC<RosterTableProps> = ({
                           title="Click to toggle Chief / Assistant role"
                           className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold border transition-colors ${
                             isChief
-                              ? 'bg-amber-50 text-amber-900 border-amber-300 hover:bg-amber-100'
+                              ? 'bg-slate-50 text-slate-900 border-amber-300 hover:bg-slate-100'
                               : 'bg-blue-50 text-blue-900 border-blue-300 hover:bg-blue-100'
                           }`}
                         >
                           {isChief ? (
-                            <Shield className="w-3 h-3 text-amber-600" />
+                            <Shield className="w-3 h-3 text-slate-600" />
                           ) : (
                             <UserCheck className="w-3 h-3 text-blue-600" />
                           )}
@@ -341,14 +341,14 @@ export const RosterTable: React.FC<RosterTableProps> = ({
                       {/* Status */}
                       <td className="p-3 whitespace-nowrap">
                         {alloc.status === 'suggested' && (
-                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-medium bg-amber-50 text-amber-800 border border-amber-200">
-                            <Sparkles className="w-3 h-3 text-amber-600" />
+                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-medium bg-slate-50 text-slate-700 border border-slate-200">
+                            <Sparkles className="w-3 h-3 text-slate-600" />
                             <span>Suggested</span>
                           </span>
                         )}
                         {alloc.status === 'approved' && (
-                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-medium bg-emerald-50 text-emerald-800 border border-emerald-200">
-                            <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-medium bg-blue-50 text-[#0d4b8f] border border-blue-200">
+                            <CheckCircle2 className="w-3 h-3 text-[#0d4b8f]" />
                             <span>Approved</span>
                           </span>
                         )}
@@ -373,7 +373,7 @@ export const RosterTable: React.FC<RosterTableProps> = ({
                           <button
                             onClick={() => onOpenSwapModal(alloc)}
                             title="Swap staff or override assignment"
-                            className="p-1.5 rounded-md text-slate-600 hover:text-emerald-800 hover:bg-emerald-50 transition-colors"
+                            className="p-1.5 rounded-md text-slate-600 hover:text-[#0d4b8f] hover:bg-blue-50 transition-colors"
                           >
                             <Edit3 className="w-3.5 h-3.5" />
                           </button>
@@ -383,7 +383,7 @@ export const RosterTable: React.FC<RosterTableProps> = ({
                             <button
                               onClick={() => onApprove(alloc.id)}
                               title="Approve this allocation"
-                              className="p-1.5 rounded-md text-emerald-700 hover:bg-emerald-100 transition-colors"
+                              className="p-1.5 rounded-md text-[#0d4b8f] hover:bg-blue-100 transition-colors"
                             >
                               <CheckCircle2 className="w-3.5 h-3.5" />
                             </button>

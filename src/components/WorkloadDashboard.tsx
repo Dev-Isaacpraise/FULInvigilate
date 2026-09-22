@@ -59,8 +59,8 @@ export const WorkloadDashboard: React.FC<WorkloadDashboardProps> = ({ allocation
       <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-2xs space-y-3">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
           <div>
-            <h2 className="text-base font-bold text-emerald-950 flex items-center gap-2">
-              <Scale className="w-5 h-5 text-amber-500" />
+            <h2 className="text-base font-bold text-slate-900 flex items-center gap-2">
+              <Scale className="w-5 h-5 text-slate-500" />
               <span>Workload Distribution & Fairness Index</span>
             </h2>
             <p className="text-xs text-slate-500 mt-0.5">
@@ -72,15 +72,15 @@ export const WorkloadDashboard: React.FC<WorkloadDashboardProps> = ({ allocation
         {/* Summary Metrics */}
         {summary && (
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
-            <div className="bg-emerald-50/70 border border-emerald-200 rounded-lg p-3">
-              <span className="text-[11px] font-semibold text-emerald-800 block">
+            <div className="bg-blue-50/70 border border-blue-200 rounded-lg p-3">
+              <span className="text-[11px] font-semibold text-[#0d4b8f] block">
                 Fairness Equity Index
               </span>
               <div className="flex items-baseline gap-1 mt-0.5">
-                <span className="text-2xl font-black text-emerald-950">
+                <span className="text-2xl font-black text-slate-900">
                   {summary.equityIndex}%
                 </span>
-                <span className="text-[10px] text-emerald-700 font-medium">Optimal</span>
+                <span className="text-[10px] text-[#0d4b8f] font-medium">Optimal</span>
               </div>
             </div>
 
@@ -136,7 +136,7 @@ export const WorkloadDashboard: React.FC<WorkloadDashboardProps> = ({ allocation
                   key={s.staff_id}
                   onClick={() => setSelectedStaffId(s.staff_id)}
                   className={`p-3.5 hover:bg-slate-50 cursor-pointer transition-colors ${
-                    isSelected ? 'bg-emerald-50/60 border-l-4 border-emerald-700' : ''
+                    isSelected ? 'bg-blue-50/60 border-l-4 border-[#0d4b8f]' : ''
                   }`}
                 >
                   <div className="flex justify-between items-start mb-1.5">
@@ -171,7 +171,7 @@ export const WorkloadDashboard: React.FC<WorkloadDashboardProps> = ({ allocation
                       style={{
                         width: `${Math.min(100, (s.approved_count / s.max_load) * 100)}%`,
                       }}
-                      className="bg-emerald-600 h-full"
+                      className="bg-[#0d4b8f] h-full"
                       title={`Approved: ${s.approved_count}`}
                     />
                     {/* Edited portion */}
@@ -187,7 +187,7 @@ export const WorkloadDashboard: React.FC<WorkloadDashboardProps> = ({ allocation
                       style={{
                         width: `${Math.min(100, (s.suggested_count / s.max_load) * 100)}%`,
                       }}
-                      className="bg-amber-500 h-full"
+                      className="bg-slate-500 h-full"
                       title={`Suggested: ${s.suggested_count}`}
                     />
                   </div>
@@ -195,11 +195,11 @@ export const WorkloadDashboard: React.FC<WorkloadDashboardProps> = ({ allocation
                   {/* Status counts pills */}
                   <div className="flex items-center gap-3 mt-2 text-[10px] text-slate-500">
                     <span className="flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#0d4b8f]"></span>
                       Approved: {s.approved_count}
                     </span>
                     <span className="flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
                       Suggested: {s.suggested_count}
                     </span>
                     <span className="flex items-center gap-1">
@@ -250,13 +250,13 @@ export const WorkloadDashboard: React.FC<WorkloadDashboardProps> = ({ allocation
                           className="bg-white border border-slate-200 rounded-lg p-2.5 text-xs space-y-1 shadow-2xs"
                         >
                           <div className="flex justify-between items-start">
-                            <span className="font-black text-emerald-950 font-mono">
+                            <span className="font-black text-slate-900 font-mono">
                               {d.course?.code}
                             </span>
                             <span
                               className={`text-[10px] px-1.5 py-0.2 rounded font-semibold uppercase ${
                                 d.role === 'chief'
-                                  ? 'bg-amber-100 text-amber-800'
+                                  ? 'bg-slate-100 text-slate-700'
                                   : 'bg-blue-100 text-blue-800'
                               }`}
                             >
@@ -274,7 +274,7 @@ export const WorkloadDashboard: React.FC<WorkloadDashboardProps> = ({ allocation
 
                           <div className="pt-1 flex items-center justify-between text-[10px]">
                             <span className="text-slate-400">Status:</span>
-                            <span className="font-bold text-emerald-700 capitalize">
+                            <span className="font-bold text-[#0d4b8f] capitalize">
                               {d.status}
                             </span>
                           </div>

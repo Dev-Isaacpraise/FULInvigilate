@@ -27,6 +27,17 @@ import {
 } from 'lucide-react';
 import { Staff, Course, EnrichedAllocation, AppUser } from '../types';
 import { api } from '../services/api';
+import logoImage from '../components/fullogo.jpg';
+import professorPhoto from './profmale.jpg';
+import drFatimaPhoto from './femalelecturer.jpg';
+
+const getStaffPhoto = (name: string, fallback?: string) => {
+  const normalized = name.toLowerCase();
+  if (normalized.includes('fatima') || normalized.includes('zahra') || normalized.includes('dr.')) {
+    return drFatimaPhoto;
+  }
+  return fallback || professorPhoto;
+};
 
 interface StaffPortalProps {
   currentUser: AppUser;
@@ -50,6 +61,7 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
   onSelectOtherStaff,
 }) => {
   const staffMember = currentUser.staffData || staffList.find((s) => s.id === currentUser.id);
+  const profilePhoto = currentUser.photoUrl || staffMember?.photoUrl || getStaffPhoto(currentUser.name, professorPhoto);
 
   // Sub-tabs in Staff Portal
   const [activeTab, setActiveTab] = useState<'schedule' | 'call_slip' | 'guidelines'>('schedule');
@@ -138,82 +150,48 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
     <div className="space-y-6">
       {/* Top Welcome & Identity Card */}
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-        <div className="bg-gradient-to-r from-emerald-950 via-emerald-900 to-teal-950 text-white p-6 relative">
+        <div className="bg-gradient-to-r from-[#0c2d57] via-[#0d4b8f] to-[#0b3f7a] text-white p-6 relative">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 relative z-10">
             <div className="flex items-start gap-4">
-              <div className="w-16 h-16 rounded-2xl bg-emerald-800/80 border-2 border-amber-400/40 flex items-center justify-center shadow-lg shrink-0">
-                <GraduationCap className="w-9 h-9 text-amber-400" />
+              <div className="w-16 h-16 overflow-hidden rounded-2xl border-2 border-white/30 shadow-lg shrink-0 bg-slate-200">
+                <img src={profilePhoto} alt={currentUser.name} className="h-full w-full object-cover" />
               </div>
               <div>
-                <div className="flex flex-wrap items-center gap-2">
+                <div className="flex flex-col gap-1">
                   <h1 className="text-xl font-black tracking-tight text-white">
                     {staffMember?.name || currentUser.name}
                   </h1>
-                  <span className="bg-amber-400/20 text-amber-300 border border-amber-400/30 text-[11px] font-bold px-2.5 py-0.5 rounded-full">
+                  <div className="text-[11px] font-medium text-blue-100">
                     {staffMember?.rank || currentUser.rank || 'Academic Staff'}
-                  </span>
-                  <span className="bg-emerald-800 text-emerald-200 text-[11px] font-medium px-2 py-0.5 rounded-full">
-                    Invigilator Portal
-                  </span>
+                  </div>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-emerald-200/90 mt-1.5">
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-blue-100/90 mt-1.5">
                   <span className="flex items-center gap-1">
-                    <Building className="w-3.5 h-3.5 text-amber-400" />
+                    <Building className="w-3.5 h-3.5 text-blue-200" />
                     Dept. of {staffMember?.department || currentUser.department || 'Science'}
                   </span>
                   <span className="flex items-center gap-1">
-                    <Mail className="w-3.5 h-3.5 text-amber-400" />
+                    <Mail className="w-3.5 h-3.5 text-blue-200" />
                     {staffMember?.email || currentUser.email}
                   </span>
                   {staffMember?.phone && (
                     <span className="flex items-center gap-1">
-                      <Phone className="w-3.5 h-3.5 text-amber-400" />
+                      <Phone className="w-3.5 h-3.5 text-blue-200" />
                       {staffMember.phone}
                     </span>
                   )}
-                  <span className="text-emerald-400 font-mono text-[11px]">
+                  <span className="text-blue-200 font-mono text-[11px]">
                     Staff ID: {staffMember?.id || currentUser.id}
                   </span>
                 </div>
               </div>
             </div>
 
-            {/* Quick Actions for Testing and Role Switch */}
             <div className="flex flex-wrap items-center gap-2 pt-2 md:pt-0">
-              {/* Change Staff Switcher (useful for demo testing other lecturers) */}
-              {staffList.length > 1 && (
-                <div className="relative">
-                  <select
-                    value={staffId}
-                    onChange={(e) => {
-                      const selected = staffList.find((s) => s.id === e.target.value);
-                      if (selected && onSelectOtherStaff) {
-                        onSelectOtherStaff(selected);
-                      }
-                    }}
-                    title="Switch staff profile for testing"
-                    aria-label="Switch staff profile for testing"
-                    className="bg-emerald-900/90 hover:bg-emerald-800 text-emerald-100 border border-emerald-700/80 rounded-lg px-2.5 py-1.5 text-xs focus:ring-2 focus:ring-amber-400 focus:outline-none cursor-pointer"
-                  >
-                    <option value="" disabled>Switch Faculty Profile...</option>
-                    {staffList.map((s) => (
-                      <option key={s.id} value={s.id} className="bg-slate-900 text-white">
-                        {s.name} ({s.rank})
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              )}
-
-              <button
-                onClick={onSwitchToAdmin}
-                className="flex items-center gap-1.5 bg-amber-500 hover:bg-amber-600 text-emerald-950 px-3 py-1.5 rounded-lg text-xs font-bold transition-colors shadow-sm"
-                title="Switch to Examination Officer Admin View"
-              >
-                <ShieldCheck className="w-3.5 h-3.5" />
-                <span>Officer Admin View</span>
-              </button>
+              <div className="rounded-md border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-medium text-blue-50">
+                Invigilator Portal
+              </div>
             </div>
           </div>
         </div>
@@ -230,9 +208,9 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
               <div
                 className={`h-full rounded-full transition-all ${
                   allocatedCount >= maxLoad
-                    ? 'bg-amber-500'
+                    ? 'bg-slate-500'
                     : allocatedCount > 0
-                    ? 'bg-emerald-600'
+                    ? 'bg-[#0d4b8f]'
                     : 'bg-slate-300'
                 }`}
                 style={{ width: `${utilizationPct}%` }}
@@ -240,16 +218,16 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
             </div>
           </div>
 
-          <div className="bg-white p-3.5 rounded-xl border border-amber-200/80 shadow-2xs">
-            <span className="text-[11px] font-semibold text-amber-800 flex items-center gap-1">
-              <Award className="w-3.5 h-3.5 text-amber-600" />
+          <div className="bg-white p-3.5 rounded-xl border border-blue-200/80 shadow-2xs">
+            <span className="text-[11px] font-semibold text-blue-800 flex items-center gap-1">
+              <Award className="w-3.5 h-3.5 text-blue-600" />
               Chief Invigilator
             </span>
             <div className="flex items-baseline gap-1.5 mt-1">
-              <span className="text-2xl font-black text-amber-950">{chiefCount}</span>
+              <span className="text-2xl font-black text-slate-900">{chiefCount}</span>
               <span className="text-xs text-slate-500">session(s)</span>
             </div>
-            <span className="text-[10px] text-amber-700 block mt-1">Lead Hall Authority</span>
+            <span className="text-[10px] text-blue-700 block mt-1">Lead Hall Authority</span>
           </div>
 
           <div className="bg-white p-3.5 rounded-xl border border-blue-200/80 shadow-2xs">
@@ -267,7 +245,7 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
           <div className="bg-white p-3.5 rounded-xl border border-slate-200 shadow-2xs">
             <span className="text-[11px] font-semibold text-slate-500 block">Status Compliance</span>
             <div className="flex items-center gap-1.5 mt-1">
-              <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
+              <CheckCircle2 className="w-5 h-5 text-[#0d4b8f] shrink-0" />
               <span className="text-xs font-bold text-slate-900">
                 {allocatedCount === 0 ? 'No Duties Yet' : 'Duties Allocated'}
               </span>
@@ -280,16 +258,16 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
 
         {/* Course Conflict Exclusions Banner */}
         {myCourses.length > 0 && (
-          <div className="px-4 sm:px-6 py-3 bg-amber-50/80 border-t border-amber-200 flex items-start gap-2.5 text-xs text-amber-900">
-            <ShieldCheck className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
+          <div className="px-4 sm:px-6 py-3 bg-slate-100 border-t border-slate-200 flex items-start gap-2.5 text-xs text-slate-700">
+            <ShieldCheck className="w-4 h-4 text-blue-700 shrink-0 mt-0.5" />
             <div>
-              <span className="font-bold text-amber-950">
+              <span className="font-bold text-slate-900">
                 Academic Integrity & Conflict-of-Interest Exclusion:
               </span>{' '}
               You are the designated lecturer for{' '}
               {myCourses.map((c, i) => (
                 <span key={c.id}>
-                  <strong className="font-mono bg-amber-200/60 px-1.5 py-0.5 rounded text-amber-950">
+                  <strong className="font-mono bg-blue-50 px-1.5 py-0.5 rounded text-slate-900 border border-blue-100">
                     {c.code} ({c.title})
                   </strong>
                   {i < myCourses.length - 1 ? ', ' : ''}
@@ -309,7 +287,7 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
             onClick={() => setActiveTab('schedule')}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold transition-all ${
               activeTab === 'schedule'
-                ? 'bg-emerald-800 text-white shadow-xs'
+                ? 'bg-[#0d4b8f] text-white shadow-xs'
                 : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
             }`}
           >
@@ -321,7 +299,7 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
             onClick={() => setActiveTab('call_slip')}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold transition-all ${
               activeTab === 'call_slip'
-                ? 'bg-emerald-800 text-white shadow-xs'
+                ? 'bg-[#0d4b8f] text-white shadow-xs'
                 : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
             }`}
           >
@@ -333,7 +311,7 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
             onClick={() => setActiveTab('guidelines')}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold transition-all ${
               activeTab === 'guidelines'
-                ? 'bg-emerald-800 text-white shadow-xs'
+                ? 'bg-[#0d4b8f] text-white shadow-xs'
                 : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
             }`}
           >
@@ -345,7 +323,7 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
         {activeTab === 'call_slip' && (
           <button
             onClick={handlePrintSlip}
-            className="flex items-center gap-1.5 bg-emerald-700 hover:bg-emerald-800 text-white px-3.5 py-1.5 rounded-lg text-xs font-bold transition-colors shadow-xs"
+            className="flex items-center gap-1.5 bg-[#0d4b8f] hover:bg-[#0b3f7a] text-white px-3.5 py-1.5 rounded-lg text-xs font-bold transition-colors shadow-xs"
           >
             <Printer className="w-3.5 h-3.5" />
             <span>Print Call Slip</span>
@@ -358,7 +336,7 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
         <div className="space-y-4">
           {sortedAllocations.length === 0 ? (
             <div className="bg-white rounded-xl border border-dashed border-slate-300 p-12 text-center space-y-3">
-              <div className="w-12 h-12 rounded-full bg-emerald-50 text-emerald-700 flex items-center justify-center mx-auto">
+              <div className="w-12 h-12 rounded-full bg-blue-50 text-blue-700 flex items-center justify-center mx-auto">
                 <Calendar className="w-6 h-6" />
               </div>
               <h3 className="text-sm font-bold text-slate-800">No Invigilation Duties Allocated Yet</h3>
@@ -366,13 +344,9 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
                 The Examination Officer has not assigned any duties to you in the current draft roster,
                 or the automated allocation engine has not been executed yet.
               </p>
-              <button
-                onClick={onSwitchToAdmin}
-                className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 hover:text-emerald-800 bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-200 transition-colors"
-              >
-                <span>Go to Officer View to Run Engine</span>
-                <ChevronRight className="w-3.5 h-3.5" />
-              </button>
+              <p className="text-xs text-slate-500">
+                Please contact the Examination Directorate for review once the roster is updated.
+              </p>
             </div>
           ) : (
             <div className="grid grid-cols-1 gap-4">
@@ -398,15 +372,15 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
                   >
                     {/* Left: Date & Timing Badge */}
                     <div className="flex items-start gap-4">
-                      <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-3 text-center min-w-[85px] shrink-0">
-                        <span className="text-[10px] font-bold text-emerald-700 uppercase block tracking-wider">
+                      <div className="bg-blue-50 border border-blue-200 rounded-xl p-3 text-center min-w-[85px] shrink-0">
+                        <span className="text-[10px] font-bold text-blue-700 uppercase block tracking-wider">
                           {alloc.exam?.date
                             ? new Date(alloc.exam.date).toLocaleDateString('en-US', {
                                 weekday: 'short',
                               })
                             : 'EXAM'}
                         </span>
-                        <span className="text-lg font-black text-emerald-950 block leading-tight">
+                        <span className="text-lg font-black text-slate-900 block leading-tight">
                           {alloc.exam?.date
                             ? new Date(alloc.exam.date).toLocaleDateString('en-US', {
                                 month: 'short',
@@ -414,7 +388,7 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
                               })
                             : 'N/A'}
                         </span>
-                        <span className="text-[10px] text-emerald-700 font-mono">
+                        <span className="text-[10px] text-blue-700 font-mono">
                           {alloc.exam?.date ? alloc.exam.date.split('-')[0] : '2026'}
                         </span>
                       </div>
@@ -430,8 +404,8 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
                           </h2>
 
                           {alloc.role === 'chief' ? (
-                            <span className="inline-flex items-center gap-1 text-[11px] font-bold bg-amber-100 text-amber-900 border border-amber-300/80 px-2.5 py-0.5 rounded-full">
-                              <Award className="w-3 h-3 text-amber-600" />
+                            <span className="inline-flex items-center gap-1 text-[11px] font-bold bg-blue-50 text-blue-900 border border-blue-200 px-2.5 py-0.5 rounded-full">
+                              <Award className="w-3 h-3 text-blue-700" />
                               Chief Invigilator
                             </span>
                           ) : (
@@ -442,7 +416,7 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
                           )}
 
                           {alloc.status === 'approved' && (
-                            <span className="text-[10px] font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full">
+                            <span className="text-[10px] font-bold bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full">
                               Approved Roster
                             </span>
                           )}
@@ -451,7 +425,7 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
                         {/* Timing and Venue info */}
                         <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-600">
                           <span className="flex items-center gap-1 font-medium text-slate-800">
-                            <Clock className="w-3.5 h-3.5 text-emerald-700" />
+                            <Clock className="w-3.5 h-3.5 text-blue-700" />
                             {alloc.exam?.start_time} - {alloc.exam?.end_time}
                           </span>
                           <span className="flex items-center gap-1 font-medium text-slate-800">
@@ -466,7 +440,7 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
                         {/* Co-invigilators in this venue */}
                         <div className="pt-1 text-[11px] text-slate-500 flex flex-wrap items-center gap-1.5">
                           <span className="font-semibold text-slate-700">Team on Duty:</span>
-                          <span className="text-emerald-800 font-medium">You ({alloc.role})</span>
+                          <span className="text-blue-800 font-medium">You ({alloc.role})</span>
                           {coInvigilators.length > 0 ? (
                             coInvigilators.map((co) => (
                               <span
@@ -484,7 +458,7 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
 
                         {/* Notice or status if swap submitted */}
                         {hasPendingSwap && (
-                          <div className="mt-1 bg-amber-50 border border-amber-200 p-1.5 rounded text-[11px] text-amber-900 font-medium">
+                          <div className="mt-1 bg-slate-100 border border-slate-200 p-1.5 rounded text-[11px] text-slate-700 font-medium">
                             {alloc.notes}
                           </div>
                         )}
@@ -494,15 +468,15 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
                     {/* Right: Duty Actions */}
                     <div className="flex flex-row md:flex-col items-center md:items-end gap-2 shrink-0 pt-3 md:pt-0 border-t md:border-t-0 border-slate-100">
                       {isAcknowledged ? (
-                        <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-lg">
-                          <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                        <div className="flex items-center gap-1.5 text-xs font-bold text-blue-700 bg-blue-50 border border-blue-200 px-3 py-1.5 rounded-lg">
+                          <CheckCircle2 className="w-4 h-4 text-blue-600" />
                           <span>Duty Confirmed</span>
                         </div>
                       ) : (
                         <button
                           onClick={() => handleAcknowledgeDuty(alloc.id)}
                           disabled={acknowledgingId === alloc.id}
-                          className="flex items-center gap-1.5 bg-emerald-700 hover:bg-emerald-800 disabled:opacity-50 text-white px-3.5 py-1.5 rounded-lg text-xs font-bold transition-colors shadow-2xs"
+                          className="flex items-center gap-1.5 bg-[#0d4b8f] hover:bg-[#0b3f7a] disabled:opacity-50 text-white px-3.5 py-1.5 rounded-lg text-xs font-bold transition-colors shadow-2xs"
                         >
                           {acknowledgingId === alloc.id ? (
                             <RefreshCw className="w-3.5 h-3.5 animate-spin" />
@@ -538,11 +512,11 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
       {activeTab === 'call_slip' && (
         <div className="bg-white rounded-2xl border border-slate-200 shadow-md p-8 print:p-0 print:border-none print:shadow-none space-y-6 max-w-4xl mx-auto">
           {/* Official Letterhead */}
-          <div className="text-center border-b-2 border-emerald-900 pb-5 space-y-1">
-            <div className="w-14 h-14 mx-auto rounded-full bg-emerald-900 text-amber-400 flex items-center justify-center font-black text-xl mb-1 shadow-sm">
-              FUL
+          <div className="text-center border-b-2 border-[#0d4b8f] pb-5 space-y-1">
+            <div className="mb-2 flex justify-center">
+              <img src={logoImage} alt="Federal University Lokoja logo" className="h-14 w-14 rounded-full border border-slate-200 bg-white object-cover shadow-sm" />
             </div>
-            <h1 className="text-xl font-black text-emerald-950 uppercase tracking-wide">
+            <h1 className="text-xl font-black text-slate-900 uppercase tracking-wide">
               Federal University Lokoja
             </h1>
             <p className="text-xs font-semibold text-slate-700 uppercase">
@@ -552,7 +526,7 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
               P.M.B. 1154, Lokoja, Kogi State, Nigeria
             </p>
             <div className="pt-2">
-              <span className="inline-block bg-emerald-900 text-white font-bold text-xs uppercase px-4 py-1 rounded tracking-wider">
+              <span className="inline-block bg-[#0d4b8f] text-white font-bold text-xs uppercase px-4 py-1 rounded tracking-wider">
                 Official Examination Invigilation Call Slip (2025/2026 Session)
               </span>
             </div>
@@ -636,7 +610,7 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
                       </td>
                       <td className="p-2.5">
                         {a.role === 'chief' ? (
-                          <span className="font-bold text-amber-900 bg-amber-100 px-2 py-0.5 rounded text-[10px]">
+                          <span className="font-bold text-blue-900 bg-blue-50 px-2 py-0.5 rounded text-[10px] border border-blue-200">
                             CHIEF INVIGILATOR
                           </span>
                         ) : (
@@ -646,7 +620,7 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
                         )}
                       </td>
                       <td className="p-2.5">
-                        <span className="text-[10px] font-bold text-emerald-800 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">
+                        <span className="text-[10px] font-bold text-blue-800 bg-blue-50 px-1.5 py-0.5 rounded border border-blue-200">
                           CONFIRMED
                         </span>
                       </td>
@@ -658,9 +632,9 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
           </div>
 
           {/* Statutory Directives */}
-          <div className="bg-amber-50/70 border border-amber-200 rounded-xl p-4 text-[11px] text-amber-950 space-y-1.5">
-            <span className="font-bold flex items-center gap-1 text-amber-950">
-              <AlertCircle className="w-3.5 h-3.5 text-amber-700" />
+          <div className="bg-slate-100 border border-slate-200 rounded-xl p-4 text-[11px] text-slate-700 space-y-1.5">
+            <span className="font-bold flex items-center gap-1 text-slate-900">
+              <AlertCircle className="w-3.5 h-3.5 text-blue-700" />
               Statutory Invigilator Directives (FUL Senate Regulations):
             </span>
             <ul className="list-disc list-inside space-y-1 text-slate-700">
@@ -699,7 +673,7 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
       {activeTab === 'guidelines' && (
         <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-6">
           <div className="flex items-center gap-2 border-b border-slate-200 pb-3">
-            <GraduationCap className="w-5 h-5 text-emerald-800" />
+            <GraduationCap className="w-5 h-5 text-[#0d4b8f]" />
             <h2 className="text-sm font-bold text-slate-900 uppercase tracking-wide">
               Federal University Lokoja — Code of Conduct for Examination Invigilators
             </h2>
@@ -709,7 +683,7 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
             <div className="space-y-3">
               <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1.5">
                 <h3 className="font-bold text-slate-900 flex items-center gap-1.5">
-                  <Clock className="w-4 h-4 text-emerald-700" />
+                  <Clock className="w-4 h-4 text-blue-700" />
                   1. Punctuality & Attendance
                 </h3>
                 <p>
@@ -721,7 +695,7 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
 
               <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1.5">
                 <h3 className="font-bold text-slate-900 flex items-center gap-1.5">
-                  <ShieldCheck className="w-4 h-4 text-emerald-700" />
+                  <ShieldCheck className="w-4 h-4 text-blue-700" />
                   2. Conflict of Interest Exclusions
                 </h3>
                 <p>
@@ -733,7 +707,7 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
 
               <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1.5">
                 <h3 className="font-bold text-slate-900 flex items-center gap-1.5">
-                  <UserCheck className="w-4 h-4 text-emerald-700" />
+                  <UserCheck className="w-4 h-4 text-blue-700" />
                   3. Candidate Verification
                 </h3>
                 <p>
@@ -746,7 +720,7 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
             <div className="space-y-3">
               <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1.5">
                 <h3 className="font-bold text-slate-900 flex items-center gap-1.5">
-                  <AlertCircle className="w-4 h-4 text-amber-600" />
+                  <AlertCircle className="w-4 h-4 text-blue-700" />
                   4. Examination Malpractice Procedure
                 </h3>
                 <p>
@@ -758,7 +732,7 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
 
               <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1.5">
                 <h3 className="font-bold text-slate-900 flex items-center gap-1.5">
-                  <Award className="w-4 h-4 text-amber-600" />
+                  <Award className="w-4 h-4 text-blue-700" />
                   5. Chief Invigilator Responsibilities
                 </h3>
                 <p>
@@ -788,19 +762,19 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
       {swapModalAlloc && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-4">
           <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 max-w-lg w-full overflow-hidden animate-in fade-in zoom-in-95 duration-150">
-            <div className="bg-emerald-950 text-white p-5 flex items-center justify-between">
+            <div className="bg-[#0d4b8f] text-white p-5 flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <ArrowRightLeft className="w-5 h-5 text-amber-400" />
+                <ArrowRightLeft className="w-5 h-5 text-blue-100" />
                 <div>
                   <h3 className="text-sm font-bold">Request Invigilation Swap or Relief</h3>
-                  <span className="text-[11px] text-emerald-300">
+                  <span className="text-[11px] text-blue-100">
                     Senate Examination Committee Notification Form
                   </span>
                 </div>
               </div>
               <button
                 onClick={() => setSwapModalAlloc(null)}
-                className="text-emerald-300 hover:text-white p-1"
+                className="text-blue-100 hover:text-white p-1"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -808,10 +782,10 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
 
             <form onSubmit={handleSubmitSwap} className="p-6 space-y-4 text-xs">
               {swapSuccessMsg ? (
-                <div className="bg-emerald-50 border border-emerald-200 text-emerald-900 p-4 rounded-xl text-center space-y-2">
-                  <CheckCircle2 className="w-8 h-8 text-emerald-600 mx-auto" />
+                <div className="bg-blue-50 border border-blue-200 text-blue-900 p-4 rounded-xl text-center space-y-2">
+                  <CheckCircle2 className="w-8 h-8 text-blue-600 mx-auto" />
                   <p className="font-bold text-sm">{swapSuccessMsg}</p>
-                  <p className="text-[11px] text-emerald-700">
+                  <p className="text-[11px] text-blue-700">
                     Your request has been logged and the Examination Officer will review it.
                   </p>
                 </div>
@@ -840,7 +814,7 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
                         onClick={() => setSwapType('swap')}
                         className={`p-2.5 rounded-lg border text-left transition-all ${
                           swapType === 'swap'
-                            ? 'border-emerald-600 bg-emerald-50 text-emerald-900 font-bold'
+                            ? 'border-[#0d4b8f] bg-blue-50 text-blue-900 font-bold'
                             : 'border-slate-200 bg-white text-slate-700'
                         }`}
                       >
@@ -855,7 +829,7 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
                         onClick={() => setSwapType('relief')}
                         className={`p-2.5 rounded-lg border text-left transition-all ${
                           swapType === 'relief'
-                            ? 'border-emerald-600 bg-emerald-50 text-emerald-900 font-bold'
+                            ? 'border-[#0d4b8f] bg-blue-50 text-blue-900 font-bold'
                             : 'border-slate-200 bg-white text-slate-700'
                         }`}
                       >
@@ -876,7 +850,7 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
                       <select
                         value={swapTargetStaffId}
                         onChange={(e) => setSwapTargetStaffId(e.target.value)}
-                        className="w-full border border-slate-300 rounded-lg p-2.5 bg-white text-slate-900 focus:ring-2 focus:ring-emerald-700 focus:outline-none"
+                        className="w-full border border-slate-300 rounded-lg p-2.5 bg-white text-slate-900 focus:ring-2 focus:ring-[#0d4b8f] focus:outline-none"
                       >
                         <option value="">-- Propose a Colleague (Optional) --</option>
                         {staffList
@@ -901,7 +875,7 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
                       value={swapReason}
                       onChange={(e) => setSwapReason(e.target.value)}
                       placeholder="e.g. Attending mandatory academic conference, documented medical appointment, departmental emergency..."
-                      className="w-full border border-slate-300 rounded-lg p-2.5 text-xs text-slate-900 focus:ring-2 focus:ring-emerald-700 focus:outline-none"
+                      className="w-full border border-slate-300 rounded-lg p-2.5 text-xs text-slate-900 focus:ring-2 focus:ring-[#0d4b8f] focus:outline-none"
                     />
                   </div>
 
@@ -916,7 +890,7 @@ export const StaffPortal: React.FC<StaffPortalProps> = ({
                     <button
                       type="submit"
                       disabled={submittingSwap || !swapReason.trim()}
-                      className="px-4 py-2 rounded-lg bg-emerald-800 hover:bg-emerald-900 disabled:opacity-50 text-white font-bold transition-colors flex items-center gap-1.5"
+                      className="px-4 py-2 rounded-lg bg-[#0d4b8f] hover:bg-[#0b3f7a] disabled:opacity-50 text-white font-bold transition-colors flex items-center gap-1.5"
                     >
                       {submittingSwap ? (
                         <RefreshCw className="w-3.5 h-3.5 animate-spin" />

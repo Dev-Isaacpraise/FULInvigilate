@@ -108,7 +108,7 @@ export const StaffManagement: React.FC<StaffManagementProps> = ({
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 bg-white p-4 rounded-xl border border-slate-200 shadow-2xs">
         <div>
-          <h2 className="text-base font-bold text-emerald-950">
+          <h2 className="text-base font-bold text-slate-900">
             Academic Staff & Invigilator Directory
           </h2>
           <p className="text-xs text-slate-500">
@@ -117,7 +117,7 @@ export const StaffManagement: React.FC<StaffManagementProps> = ({
         </div>
         <button
           onClick={handleOpenAdd}
-          className="flex items-center gap-1.5 px-3.5 py-2 bg-emerald-800 text-white text-xs font-bold rounded-lg hover:bg-emerald-900 transition-colors shadow-2xs"
+          className="flex items-center gap-1.5 px-3.5 py-2 bg-[#0d4b8f] text-white text-xs font-bold rounded-lg hover:bg-[#0b3f7a] transition-colors shadow-2xs"
         >
           <UserPlus className="w-4 h-4" />
           <span>Add Academic Staff</span>
@@ -147,7 +147,7 @@ export const StaffManagement: React.FC<StaffManagementProps> = ({
                   </td>
                   <td className="p-3 text-slate-600">{staff.department}</td>
                   <td className="p-3">
-                    <span className="px-2 py-0.5 rounded text-[11px] font-medium bg-emerald-50 text-emerald-900 border border-emerald-200">
+                    <span className="px-2 py-0.5 rounded text-[11px] font-medium bg-blue-50 text-slate-900 border border-blue-200">
                       {staff.rank}
                     </span>
                   </td>
@@ -171,7 +171,7 @@ export const StaffManagement: React.FC<StaffManagementProps> = ({
                       onClick={() => handleToggleActive(staff)}
                       className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold transition-colors ${
                         staff.is_active
-                          ? 'bg-emerald-100 text-emerald-800 hover:bg-emerald-200'
+                          ? 'bg-blue-100 text-[#0d4b8f] hover:bg-emerald-200'
                           : 'bg-rose-100 text-rose-800 hover:bg-rose-200'
                       }`}
                     >
@@ -192,7 +192,7 @@ export const StaffManagement: React.FC<StaffManagementProps> = ({
                     <div className="flex items-center justify-end gap-2">
                       <button
                         onClick={() => handleOpenEdit(staff)}
-                        className="p-1 text-slate-500 hover:text-emerald-700 hover:bg-slate-100 rounded"
+                        className="p-1 text-slate-500 hover:text-[#0d4b8f] hover:bg-slate-100 rounded"
                       >
                         <Edit2 className="w-3.5 h-3.5" />
                       </button>
@@ -215,13 +215,13 @@ export const StaffManagement: React.FC<StaffManagementProps> = ({
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-4">
           <div className="bg-white rounded-xl shadow-2xl border border-slate-200 max-w-md w-full overflow-hidden animate-in fade-in zoom-in-95 duration-150">
-            <div className="bg-emerald-900 text-white px-5 py-3.5 flex items-center justify-between">
+            <div className="bg-[#0b3f7a] text-white px-5 py-3.5 flex items-center justify-between">
               <h3 className="text-sm font-bold">
                 {editingStaff ? 'Edit Academic Staff Member' : 'Register New Academic Staff'}
               </h3>
               <button
                 onClick={() => setShowModal(false)}
-                className="text-emerald-300 hover:text-white"
+                className="text-blue-200 hover:text-white"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -236,7 +236,7 @@ export const StaffManagement: React.FC<StaffManagementProps> = ({
                   placeholder="e.g. Dr. Fatima Zahra Bello"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-emerald-600 focus:outline-none"
+                  className="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-[#0d4b8f] focus:outline-none"
                 />
               </div>
 
@@ -246,7 +246,7 @@ export const StaffManagement: React.FC<StaffManagementProps> = ({
                   <select
                     value={formData.department}
                     onChange={(e) => setFormData({ ...formData, department: e.target.value })}
-                    className="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-emerald-600 focus:outline-none bg-white"
+                    className="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-[#0d4b8f] focus:outline-none bg-white"
                   >
                     {DEPARTMENTS.map((d) => (
                       <option key={d} value={d}>
@@ -261,7 +261,7 @@ export const StaffManagement: React.FC<StaffManagementProps> = ({
                   <select
                     value={formData.rank}
                     onChange={(e) => setFormData({ ...formData, rank: e.target.value })}
-                    className="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-emerald-600 focus:outline-none bg-white"
+                    className="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-[#0d4b8f] focus:outline-none bg-white"
                   >
                     {RANKS.map((r) => (
                       <option key={r} value={r}>
@@ -281,7 +281,7 @@ export const StaffManagement: React.FC<StaffManagementProps> = ({
                     placeholder="name@fulokoja.edu.ng"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-emerald-600 focus:outline-none"
+                    className="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-[#0d4b8f] focus:outline-none"
                   />
                 </div>
 
@@ -293,7 +293,7 @@ export const StaffManagement: React.FC<StaffManagementProps> = ({
                     placeholder="+234 803 123 4567"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-emerald-600 focus:outline-none"
+                    className="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-[#0d4b8f] focus:outline-none"
                   />
                 </div>
               </div>
@@ -310,7 +310,7 @@ export const StaffManagement: React.FC<StaffManagementProps> = ({
                     required
                     value={formData.max_load}
                     onChange={(e) => setFormData({ ...formData, max_load: Number(e.target.value) })}
-                    className="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-emerald-600 focus:outline-none"
+                    className="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-[#0d4b8f] focus:outline-none"
                   />
                   <span className="text-[10px] text-slate-500">Maximum invigilations allowed</span>
                 </div>
@@ -322,7 +322,7 @@ export const StaffManagement: React.FC<StaffManagementProps> = ({
                       type="checkbox"
                       checked={formData.is_active}
                       onChange={(e) => setFormData({ ...formData, is_active: e.target.checked })}
-                      className="rounded border-slate-300 text-emerald-600 focus:ring-emerald-500"
+                      className="rounded border-slate-300 text-[#0d4b8f] focus:ring-[#0d4b8f]"
                     />
                     <span className="text-xs text-slate-700">Available for Allocation</span>
                   </label>
@@ -339,7 +339,7 @@ export const StaffManagement: React.FC<StaffManagementProps> = ({
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-1.5 rounded-lg font-bold text-white bg-emerald-800 hover:bg-emerald-900"
+                  className="px-4 py-1.5 rounded-lg font-bold text-white bg-[#0d4b8f] hover:bg-[#0b3f7a]"
                 >
                   {editingStaff ? 'Update Staff' : 'Save Staff'}
                 </button>

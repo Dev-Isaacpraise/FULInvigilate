@@ -71,7 +71,7 @@ export const VenueManagement: React.FC<VenueManagementProps> = ({
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 bg-white p-4 rounded-xl border border-slate-200 shadow-2xs">
         <div>
-          <h2 className="text-base font-bold text-emerald-950">
+          <h2 className="text-base font-bold text-slate-900">
             Examination Venues & Fixed Invigilator Capacity
           </h2>
           <p className="text-xs text-slate-500">
@@ -80,7 +80,7 @@ export const VenueManagement: React.FC<VenueManagementProps> = ({
         </div>
         <button
           onClick={handleOpenAdd}
-          className="flex items-center gap-1.5 px-3.5 py-2 bg-emerald-800 text-white text-xs font-bold rounded-lg hover:bg-emerald-900 transition-colors shadow-2xs"
+          className="flex items-center gap-1.5 px-3.5 py-2 bg-[#0d4b8f] text-white text-xs font-bold rounded-lg hover:bg-[#0b3f7a] transition-colors shadow-2xs"
         >
           <Plus className="w-4 h-4" />
           <span>Add Exam Venue</span>
@@ -102,7 +102,7 @@ export const VenueManagement: React.FC<VenueManagementProps> = ({
                 <div className="flex items-center gap-1">
                   <button
                     onClick={() => handleOpenEdit(venue)}
-                    className="p-1 text-slate-400 hover:text-emerald-700 rounded"
+                    className="p-1 text-slate-400 hover:text-[#0d4b8f] rounded"
                   >
                     <Edit2 className="w-3.5 h-3.5" />
                   </button>
@@ -128,15 +128,15 @@ export const VenueManagement: React.FC<VenueManagementProps> = ({
                 <span className="font-bold text-slate-900 text-sm">{venue.capacity} seats</span>
               </div>
 
-              <div className="bg-emerald-50/80 p-2 rounded-lg border border-emerald-200">
-                <span className="text-[10px] text-emerald-800 block font-semibold">
+              <div className="bg-blue-50/80 p-2 rounded-lg border border-blue-200">
+                <span className="text-[10px] text-[#0d4b8f] block font-semibold">
                   Required Invigilators
                 </span>
-                <span className="font-black text-emerald-950 text-sm flex items-center gap-1">
-                  <Shield className="w-3.5 h-3.5 text-amber-600" />
+                <span className="font-black text-slate-900 text-sm flex items-center gap-1">
+                  <Shield className="w-3.5 h-3.5 text-slate-600" />
                   {venue.fixed_invigilator_count} Staff
                 </span>
-                <span className="text-[9px] text-emerald-700 block">
+                <span className="text-[9px] text-[#0d4b8f] block">
                   (1 Chief + {Math.max(0, venue.fixed_invigilator_count - 1)} Asst)
                 </span>
               </div>
@@ -149,13 +149,13 @@ export const VenueManagement: React.FC<VenueManagementProps> = ({
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-4">
           <div className="bg-white rounded-xl shadow-2xl border border-slate-200 max-w-md w-full overflow-hidden animate-in fade-in zoom-in-95 duration-150">
-            <div className="bg-emerald-900 text-white px-5 py-3.5 flex items-center justify-between">
+            <div className="bg-[#0b3f7a] text-white px-5 py-3.5 flex items-center justify-between">
               <h3 className="text-sm font-bold">
                 {editingVenue ? 'Edit Venue' : 'Register New Exam Venue'}
               </h3>
               <button
                 onClick={() => setShowModal(false)}
-                className="text-emerald-300 hover:text-white"
+                className="text-blue-200 hover:text-white"
               >
                 ✕
               </button>
@@ -170,7 +170,7 @@ export const VenueManagement: React.FC<VenueManagementProps> = ({
                   placeholder="e.g. Lecture Theatre 1 (LT-1)"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-emerald-600 focus:outline-none"
+                  className="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-[#0d4b8f] focus:outline-none"
                 />
               </div>
 
@@ -179,7 +179,7 @@ export const VenueManagement: React.FC<VenueManagementProps> = ({
                 <select
                   value={formData.location}
                   onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                  className="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-emerald-600 focus:outline-none bg-white"
+                  className="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-[#0d4b8f] focus:outline-none bg-white"
                 >
                   <option value="Felele Permanent Site">Felele Permanent Site</option>
                   <option value="Adankolo Campus">Adankolo Campus</option>
@@ -197,7 +197,7 @@ export const VenueManagement: React.FC<VenueManagementProps> = ({
                     required
                     value={formData.capacity}
                     onChange={(e) => setFormData({ ...formData, capacity: Number(e.target.value) })}
-                    className="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-emerald-600 focus:outline-none"
+                    className="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-[#0d4b8f] focus:outline-none"
                   />
                 </div>
 
@@ -214,12 +214,12 @@ export const VenueManagement: React.FC<VenueManagementProps> = ({
                     onChange={(e) =>
                       setFormData({ ...formData, fixed_invigilator_count: Number(e.target.value) })
                     }
-                    className="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-emerald-600 focus:outline-none"
+                    className="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-[#0d4b8f] focus:outline-none"
                   />
                 </div>
               </div>
 
-              <div className="bg-emerald-50 border border-emerald-200 rounded p-2 text-[11px] text-emerald-900">
+              <div className="bg-blue-50 border border-blue-200 rounded p-2 text-[11px] text-slate-900">
                 Notice: The allocation engine will always allocate exactly{' '}
                 <strong>{formData.fixed_invigilator_count}</strong> staff members to this hall whenever it is scheduled.
               </div>
@@ -234,7 +234,7 @@ export const VenueManagement: React.FC<VenueManagementProps> = ({
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-1.5 rounded-lg font-bold text-white bg-emerald-800 hover:bg-emerald-900"
+                  className="px-4 py-1.5 rounded-lg font-bold text-white bg-[#0d4b8f] hover:bg-[#0b3f7a]"
                 >
                   {editingVenue ? 'Save Venue' : 'Create Venue'}
                 </button>

@@ -100,7 +100,7 @@ export const PrintableRoster: React.FC<PrintableRosterProps> = ({
       <div className="print:hidden flex items-center justify-between bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
         <button
           onClick={onBack}
-          className="flex items-center gap-2 text-xs font-semibold text-slate-700 hover:text-emerald-800 transition-colors"
+          className="flex items-center gap-2 text-xs font-semibold text-slate-700 hover:text-[#0d4b8f] transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Return to Interactive Roster</span>
@@ -116,7 +116,7 @@ export const PrintableRoster: React.FC<PrintableRosterProps> = ({
           </button>
           <button
             onClick={handlePrint}
-            className="flex items-center gap-1.5 px-4 py-1.5 rounded-lg bg-emerald-800 text-white text-xs font-bold hover:bg-emerald-900 transition-colors shadow-xs"
+            className="flex items-center gap-1.5 px-4 py-1.5 rounded-lg bg-[#0d4b8f] text-white text-xs font-bold hover:bg-[#0b3f7a] transition-colors shadow-xs"
           >
             <Printer className="w-4 h-4" />
             <span>Print Official Roster</span>
@@ -129,15 +129,15 @@ export const PrintableRoster: React.FC<PrintableRosterProps> = ({
         {/* Letterhead */}
         <div className="text-center border-b-2 border-emerald-900 pb-4 mb-6">
           <div className="flex justify-center items-center gap-2 mb-1">
-            <GraduationCap className="w-8 h-8 text-emerald-900" />
-            <h1 className="text-2xl font-black tracking-tight text-emerald-950 uppercase">
+            <GraduationCap className="w-8 h-8 text-slate-900" />
+            <h1 className="text-2xl font-black tracking-tight text-slate-900 uppercase">
               Federal University Lokoja
             </h1>
           </div>
           <p className="text-xs font-semibold text-slate-600 uppercase tracking-widest">
             Kogi State, Nigeria • Directorate of Academic Planning & Quality Assurance
           </p>
-          <div className="mt-3 bg-emerald-900 text-white py-1 px-4 rounded-md inline-block">
+          <div className="mt-3 bg-[#0b3f7a] text-white py-1 px-4 rounded-md inline-block">
             <h2 className="text-sm font-bold tracking-wide">
               OFFICIAL EXAMINATION INVIGILATION DUTY ROSTER
             </h2>
@@ -169,7 +169,7 @@ export const PrintableRoster: React.FC<PrintableRosterProps> = ({
                   <td className="p-2.5 border-r border-slate-200 whitespace-nowrap">
                     {slot.exam?.start_time} - {slot.exam?.end_time}
                   </td>
-                  <td className="p-2.5 border-r border-slate-200 font-bold text-emerald-900 whitespace-nowrap">
+                  <td className="p-2.5 border-r border-slate-200 font-bold text-slate-900 whitespace-nowrap">
                     {slot.course?.code}
                     <span className="block text-[10px] font-normal text-slate-500">
                       {slot.course?.title}

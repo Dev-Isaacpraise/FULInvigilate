@@ -7,6 +7,7 @@ export interface Staff {
   phone: string;
   max_load: number;
   is_active: boolean;
+  photoUrl?: string;
 }
 
 export interface Course {
@@ -131,4 +132,5 @@ export interface AppUser {
   rank?: string;
   staffId?: string;
   staffData?: Staff;
+  photoUrl?: string;
 }

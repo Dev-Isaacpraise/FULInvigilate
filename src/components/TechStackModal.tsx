@@ -54,7 +54,7 @@ export const TechStackModal: React.FC = () => {
           onClick={() => setActiveSubTab('stack')}
           className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
             activeSubTab === 'stack'
-              ? 'bg-emerald-800 text-white shadow-xs'
+              ? 'bg-[#0d4b8f] text-white shadow-xs'
               : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
           }`}
         >
@@ -66,7 +66,7 @@ export const TechStackModal: React.FC = () => {
           onClick={() => setActiveSubTab('schema')}
           className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
             activeSubTab === 'schema'
-              ? 'bg-emerald-800 text-white shadow-xs'
+              ? 'bg-[#0d4b8f] text-white shadow-xs'
               : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
           }`}
         >
@@ -78,7 +78,7 @@ export const TechStackModal: React.FC = () => {
           onClick={() => setActiveSubTab('algorithm')}
           className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
             activeSubTab === 'algorithm'
-              ? 'bg-emerald-800 text-white shadow-xs'
+              ? 'bg-[#0d4b8f] text-white shadow-xs'
               : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
           }`}
         >
@@ -90,7 +90,7 @@ export const TechStackModal: React.FC = () => {
           onClick={() => setActiveSubTab('audit')}
           className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
             activeSubTab === 'audit'
-              ? 'bg-emerald-800 text-white shadow-xs'
+              ? 'bg-[#0d4b8f] text-white shadow-xs'
               : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
           }`}
         >
@@ -104,7 +104,7 @@ export const TechStackModal: React.FC = () => {
         <div className="space-y-6">
           <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-2xs space-y-4">
             <div>
-              <h2 className="text-base font-bold text-emerald-950">
+              <h2 className="text-base font-bold text-slate-900">
                 University Final-Year Project Stack Recommendation
               </h2>
               <p className="text-xs text-slate-600 mt-1">
@@ -125,12 +125,12 @@ export const TechStackModal: React.FC = () => {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-200 text-slate-700">
-                  <tr className="bg-emerald-50/40">
-                    <td className="p-3 font-bold text-emerald-950">
+                  <tr className="bg-blue-50/40">
+                    <td className="p-3 font-bold text-slate-900">
                       Option A: Node.js (Express + TS) + React + Relational Schema
                     </td>
                     <td className="p-3">
-                      <span className="font-semibold text-emerald-700">Exceptional (10/10)</span>
+                      <span className="font-semibold text-[#0d4b8f]">Exceptional (10/10)</span>
                       <p className="text-[11px] text-slate-500">
                         Zero external daemon setup. Runs on any evaluator laptop with standard Node.
                       </p>
@@ -142,13 +142,13 @@ export const TechStackModal: React.FC = () => {
                       </p>
                     </td>
                     <td className="p-3">
-                      <span className="font-semibold text-emerald-700">100% Reliable</span>
+                      <span className="font-semibold text-[#0d4b8f]">100% Reliable</span>
                       <p className="text-[11px] text-slate-500">
                         No port conflicts, zero database socket errors during live defense.
                       </p>
                     </td>
                     <td className="p-3">
-                      <span className="px-2 py-0.5 rounded text-[11px] font-black bg-emerald-800 text-white">
+                      <span className="px-2 py-0.5 rounded text-[11px] font-black bg-[#0d4b8f] text-white">
                         SELECTED
                       </span>
                     </td>
@@ -159,7 +159,7 @@ export const TechStackModal: React.FC = () => {
                       Option B: Python (Django / FastAPI) + PostgreSQL + React
                     </td>
                     <td className="p-3">
-                      <span className="font-semibold text-amber-700">Moderate (7/10)</span>
+                      <span className="font-semibold text-slate-600">Moderate (7/10)</span>
                       <p className="text-[11px] text-slate-500">
                         Requires Python virtual environment, pip wheels, and local Postgres daemon.
                       </p>
@@ -171,7 +171,7 @@ export const TechStackModal: React.FC = () => {
                       </p>
                     </td>
                     <td className="p-3">
-                      <span className="font-semibold text-amber-700">Good</span>
+                      <span className="font-semibold text-slate-600">Good</span>
                       <p className="text-[11px] text-slate-500">
                         Vulnerable to Postgres connection refused on presentation laptops.
                       </p>
@@ -214,7 +214,7 @@ export const TechStackModal: React.FC = () => {
             {/* Defense Presentation Tips */}
             <div className="bg-slate-50 border border-slate-200 rounded-lg p-4 text-xs space-y-2">
               <h4 className="font-bold text-slate-900 flex items-center gap-1.5">
-                <FileText className="w-4 h-4 text-emerald-800" />
+                <FileText className="w-4 h-4 text-[#0d4b8f]" />
                 Project Report (Chapter 3 & 4) Defense Talking Points
               </h4>
               <ul className="list-disc list-inside space-y-1 text-slate-600">
@@ -238,8 +238,8 @@ export const TechStackModal: React.FC = () => {
         <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-2xs space-y-4">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
             <div>
-              <h2 className="text-base font-bold text-emerald-950 flex items-center gap-2">
-                <Database className="w-4 h-4 text-emerald-700" />
+              <h2 className="text-base font-bold text-slate-900 flex items-center gap-2">
+                <Database className="w-4 h-4 text-[#0d4b8f]" />
                 <span>ANSI SQL Database Schema (db/schema.sql)</span>
               </h2>
               <p className="text-xs text-slate-500">
@@ -252,7 +252,7 @@ export const TechStackModal: React.FC = () => {
             >
               {copied ? (
                 <>
-                  <Check className="w-3.5 h-3.5 text-emerald-600" />
+                  <Check className="w-3.5 h-3.5 text-[#0d4b8f]" />
                   <span>Copied to Clipboard!</span>
                 </>
               ) : (
@@ -264,7 +264,7 @@ export const TechStackModal: React.FC = () => {
             </button>
           </div>
 
-          <div className="bg-slate-950 text-emerald-400 p-4 rounded-xl font-mono text-xs overflow-x-auto max-h-[500px] border border-slate-800 leading-relaxed">
+          <div className="bg-slate-950 text-blue-300 p-4 rounded-xl font-mono text-xs overflow-x-auto max-h-[500px] border border-slate-800 leading-relaxed">
             <pre>{sqlSchema || '-- Loading database schema...'}</pre>
           </div>
         </div>
@@ -274,8 +274,8 @@ export const TechStackModal: React.FC = () => {
       {activeSubTab === 'algorithm' && (
         <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-2xs space-y-4 text-xs text-slate-800">
           <div>
-            <h2 className="text-base font-bold text-emerald-950 flex items-center gap-2">
-              <Cpu className="w-4 h-4 text-emerald-700" />
+            <h2 className="text-base font-bold text-slate-900 flex items-center gap-2">
+              <Cpu className="w-4 h-4 text-[#0d4b8f]" />
               <span>Allocation Algorithm Mathematical Formulation</span>
             </h2>
             <p className="text-xs text-slate-500">
@@ -290,7 +290,7 @@ export const TechStackModal: React.FC = () => {
                 Let $E$ be an examination for course $C$, where $C.lecturer\_id$ represents the assigned lecturer.
                 A staff candidate $S$ is eligible if and only if:
               </p>
-              <div className="bg-white p-2 rounded border border-slate-300 font-mono text-[11px] my-1 text-emerald-900">
+              <div className="bg-white p-2 rounded border border-slate-300 font-mono text-[11px] my-1 text-slate-900">
                 S.id !== C.lecturer_id
               </div>
               <p className="text-slate-500 text-[11px]">
@@ -303,7 +303,7 @@ export const TechStackModal: React.FC = () => {
               <p className="text-slate-600">
                 For an exam with date D1, start time Ts1, and end time Te1, candidate S cannot hold any active allocation on another exam where:
               </p>
-              <div className="bg-white p-2 rounded border border-slate-300 font-mono text-[11px] my-1 text-emerald-900">
+              <div className="bg-white p-2 rounded border border-slate-300 font-mono text-[11px] my-1 text-slate-900">
                 (Date1 === Date2) &amp;&amp; (max(Start1, Start2) &lt; min(End1, End2))
               </div>
             </div>
@@ -313,7 +313,7 @@ export const TechStackModal: React.FC = () => {
               <p className="text-slate-600">
                 Each faculty member has a predetermined ceiling (max_load). The allocation count must strictly satisfy:
               </p>
-              <div className="bg-white p-2 rounded border border-slate-300 font-mono text-[11px] my-1 text-emerald-900">
+              <div className="bg-white p-2 rounded border border-slate-300 font-mono text-[11px] my-1 text-slate-900">
                 current_load &lt; staff.max_load
               </div>
             </div>
@@ -323,7 +323,7 @@ export const TechStackModal: React.FC = () => {
               <p className="text-slate-600">
                 From the set of eligible candidates, the engine sorts by ascending current load count:
               </p>
-              <div className="bg-white p-2 rounded border border-slate-300 font-mono text-[11px] my-1 text-emerald-900">
+              <div className="bg-white p-2 rounded border border-slate-300 font-mono text-[11px] my-1 text-slate-900">
                 candidate = argmin(current_load[staff_id])
               </div>
               <p className="text-slate-500 text-[11px] mt-1">
@@ -339,7 +339,7 @@ export const TechStackModal: React.FC = () => {
         <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-2xs space-y-4">
           <div className="flex justify-between items-center">
             <div>
-              <h2 className="text-base font-bold text-emerald-950">
+              <h2 className="text-base font-bold text-slate-900">
                 System Activity Audit Trail
               </h2>
               <p className="text-xs text-slate-500">

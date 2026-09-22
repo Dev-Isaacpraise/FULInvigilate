@@ -25,23 +25,23 @@ export const GenerationReportModal: React.FC<GenerationReportModalProps> = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-4">
       <div className="bg-white rounded-xl shadow-2xl border border-slate-200 max-w-xl w-full overflow-hidden animate-in fade-in zoom-in-95 duration-150">
         {/* Header */}
-        <div className="bg-emerald-900 text-white px-5 py-4 flex items-center justify-between">
+        <div className="bg-[#0b3f7a] text-white px-5 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="p-2 bg-emerald-800 rounded-lg border border-emerald-700">
-              <Cpu className="w-5 h-5 text-amber-400" />
+            <div className="p-2 bg-[#0d4b8f] rounded-lg border border-[#0d4b8f]">
+              <Cpu className="w-5 h-5 text-slate-400" />
             </div>
             <div>
               <h3 className="text-base font-bold text-white leading-none">
                 Allocation Engine Run Complete
               </h3>
-              <p className="text-xs text-emerald-300 mt-1">
+              <p className="text-xs text-blue-200 mt-1">
                 Federal University Lokoja Suggestion Generator
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="text-emerald-300 hover:text-white p-1 rounded-md transition-colors"
+            className="text-blue-200 hover:text-white p-1 rounded-md transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -51,9 +51,9 @@ export const GenerationReportModal: React.FC<GenerationReportModalProps> = ({
         <div className="p-6 space-y-5 text-slate-800">
           {/* Key Metrics Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-3 text-center">
-              <span className="text-[11px] font-semibold text-emerald-700 block">Total Slots</span>
-              <span className="text-xl font-black text-emerald-950">{totalSlots}</span>
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-center">
+              <span className="text-[11px] font-semibold text-[#0d4b8f] block">Total Slots</span>
+              <span className="text-xl font-black text-slate-900">{totalSlots}</span>
             </div>
 
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-center">
@@ -61,18 +61,18 @@ export const GenerationReportModal: React.FC<GenerationReportModalProps> = ({
               <span className="text-xl font-black text-blue-950">{newSuggestions}</span>
             </div>
 
-            <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 text-center">
-              <span className="text-[11px] font-semibold text-amber-700 block">Preserved Decisions</span>
+            <div className="bg-slate-50 border border-slate-200 rounded-lg p-3 text-center">
+              <span className="text-[11px] font-semibold text-slate-600 block">Preserved Decisions</span>
               <span className="text-xl font-black text-amber-950">{preservedCount}</span>
             </div>
 
             <div className={`rounded-lg p-3 text-center border ${
               unfulfilledSlots > 0
                 ? 'bg-rose-50 border-rose-200 text-rose-950'
-                : 'bg-emerald-50 border-emerald-200 text-emerald-950'
+                : 'bg-blue-50 border-blue-200 text-slate-900'
             }`}>
               <span className={`text-[11px] font-semibold block ${
-                unfulfilledSlots > 0 ? 'text-rose-700' : 'text-emerald-700'
+                unfulfilledSlots > 0 ? 'text-rose-700' : 'text-[#0d4b8f]'
               }`}>
                 Unfulfilled Slots
               </span>
@@ -83,7 +83,7 @@ export const GenerationReportModal: React.FC<GenerationReportModalProps> = ({
           {/* Engine Logic Confirmation */}
           <div className="bg-slate-50 border border-slate-200 rounded-lg p-4 text-xs space-y-2">
             <h4 className="font-bold text-slate-800 flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-emerald-600" />
+              <ShieldCheck className="w-4 h-4 text-[#0d4b8f]" />
               Applied University Allocation Constraints
             </h4>
             <ul className="space-y-1 text-slate-600 pl-5 list-disc">
@@ -144,7 +144,7 @@ export const GenerationReportModal: React.FC<GenerationReportModalProps> = ({
               onClose();
               onViewRoster();
             }}
-            className="px-4 py-2 rounded-lg text-xs font-bold text-white bg-emerald-800 hover:bg-emerald-900 transition-colors shadow-sm flex items-center gap-1.5"
+            className="px-4 py-2 rounded-lg text-xs font-bold text-white bg-[#0d4b8f] hover:bg-[#0b3f7a] transition-colors shadow-sm flex items-center gap-1.5"
           >
             <span>Review & Approve Roster</span>
             <ArrowRight className="w-3.5 h-3.5" />
